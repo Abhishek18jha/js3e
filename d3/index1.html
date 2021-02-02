@@ -18,7 +18,7 @@
     <body>
         <script>
             var dataset = [];
-            for(var i = 0;i<=30;i++){
+            for(var i = 0;i<=20;i++){
                 var Number = Math.round(Math.random()*40);
                 dataset.push(Number)
             }
@@ -44,8 +44,24 @@
                 })
                 .attr("width",w /dataset.length -barPadding)
                 .attr("fill",function(d){
-                    return "rgb(210,120," + (d*10) + ")";
+                    return "rgb(0,0," + (d*10) + ")";
                 });
+                svg.selectAll("text")
+                .data(dataset)
+                .enter()
+                .append("text")
+                .text(function(d){
+                    return d;
+                }).attr("text-anchor","middle")
+                .attr("x",function(d,i){
+                    return i*(w/dataset.length) + (w/dataset.length - barPadding)/2;
+                }).attr("y",function(d){
+                    return h - (d*4) +14;
+                })
+                .attr("font-size","11px")
+                .attr("color","black")
+                .attr("fill","white")
+                .attr("font-family","sans-serif")
                // .attr("width",20)
                //.attr("height",100)
                 
